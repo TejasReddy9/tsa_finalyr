@@ -1,5 +1,4 @@
-# Walmart Stores Sales Forecasting
+# Twitter Sentiment Analysis
 
 ## Description
-
-Detailed description is given [here](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting).
+Head over to the page [here](https://tejasreddy9.github.io/tsa_finalyr).
