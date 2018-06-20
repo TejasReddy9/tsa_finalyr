@@ -3,7 +3,8 @@ layout: default
 ---
 
 # Overview
-Historical Sales Data of 45 Walmart stores each containing a number of departments is provided. I have made a regression model  which predicts the department-wide sales for each store.
+Using Twitter API online streaming data, this is an attempt to trace out the most appropriate sentiment related to the topic of interest. I've started with Naive Bayes Classifier and ended up by creating my own classifier by setting votes on which classifier to be considered more. My classifier is based on many classifiers namely Basic Naive Bayes, Multinomial Naive Bayes, Bernoulli Naive Bayes, Logistic Regression, Stochastic Gradient Descent and Linear SVM classifiers combined together.
+It basically creates votes for each classification and takes the result of that classifier whose statistical mode of votes is maximum.
 
 ## Requirements
 Install Python3.x, and install these dependencies using pip - scikit-learn, sklearn, scipy, pandas.
