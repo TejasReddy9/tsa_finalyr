@@ -114,7 +114,7 @@ def sentiment(text):
 ## Using this model for Twitter streaming data
 *   Consumer key, consumer secret key, auth key, and auth secret key are hashed in the code. I don't wanna publicize mine. Go ahead and follow the instructions in the twitter apps page.
 
-*   We use exception handling for checking whether the tweet has recieved without any interruption. It calls the module for finding the sentiment attached and also with what confidence it is saying. Let's only consider if the confidence crosses high seventies. Endless for loop..
+*   We use exception handling for checking whether the tweet has recieved without any interruption. It calls the module for finding the sentiment attached and also with what confidence it is saying. Let's only consider if the confidence crosses high seventies. 
 ```python
 class listener(StreamListener):
 	def on_data(self, data):
