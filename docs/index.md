@@ -4,13 +4,21 @@ layout: default
 
 # Overview
 Using online streaming tweets-data from Twitter API, this is an attempt to trace out the most appropriate sentiment related to the topic of interest. I've started with Naive Bayes Classifier and ended up by creating my own classifier by setting votes on which classifier to be considered more. My classifier is based on many classifiers namely Basic Naive Bayes, Multinomial Naive Bayes, Bernoulli Naive Bayes, Logistic Regression, Stochastic Gradient Descent and Linear SVM classifiers combined together.
-It basically creates votes for each classification and returns the result of that classifier whose statistical mode of votes is maximum.
+It basically creates votes for each classification and returns the result of that classifier whose statistical mode of votes is maximum. 
 
 ## Requirements
-Install Python3.x, and install these dependencies using pip - scikit-learn, sklearn, scipy, pandas.
+Install Python3.x, and for all first install these dependencies using pip - tweepy, json, StreamListner, nltk, scikit-learn, sklearn, scipy, pandas, numpy, matplotlib, pickle.
 ```
 pip3 install dependency_name
 ```
+
+For nltk, we need to download the corpus. This is done as follows.. Enter 'all' when prompted.
+```python
+import nltk
+nltk.download_shell()
+```
+
+For getting live data from twitter, go to the [twitter apps site](https://apps.twiiter.com). Attach mobile number to your twitter account and create app. You'll be given a consumer key and consumer secret key. Go down and click on authorise app. You'll be given an auth key and auth secret key. Keep them confidential.
 
 ## Data
 As data shouldn't be posted publicly, please refer this [link](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting/data).
