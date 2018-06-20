@@ -1,2 +1,5 @@
-# tsa_finalyr
-Twitter Sentiment Analysis with Live graphical visualization
+# Walmart Stores Sales Forecasting
+
+## Description
+
+Detailed description is given [here](https://www.kaggle.com/c/walmart-recruiting-store-sales-forecasting).
