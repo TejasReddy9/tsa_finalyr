@@ -107,5 +107,39 @@ def sentiment(text):
 	return voted_classifier.classify(featset)
 ```
 
+*   Note:
+> Code in github uses pickled data, so get your hands dirty and dig through how to use pickle. For reference, I'll add another file to the repo.
+> Cheers!
+
+## Using this model for Twitter streaming data
+*   Consumer key, consumer secret key, auth key, and auth secret key are hashed in the code. I don't wanna publicize mine. Go ahead and follow the instructions in the twitter apps page.
+
+*   We use exception handling for checking whether the tweet has recieved without any interruption. It calls the module for finding the sentiment attached and also with what confidence it is saying. Let's only consider if the confidence crosses high seventies. Endless for loop..
+```python
+class listener(StreamListener):
+	def on_data(self, data):
+	    try:
+		all_data = json.loads(data)
+		tweet = all_data["text"]
+		sentiment_value, confidence = s.sentiment(tweet)
+		print(tweet, sentiment_value, confidence)
+		if(confidence*100 >= 80):
+		    output = open("twitter-out.txt","a")
+		    output.write(sentiment_value)
+		    output.write('\n')
+		    output.close()
+		return(True)
+	    except Exception as e:
+		return(True)
+	def on_error(self, status):
+	    print(status)
+auth = OAuthHandler(ckey, csecret)
+auth.set_access_token(atoken, asecret)
+twitterStream = Stream(auth, listener())
+twitterStream.filter(track=["happy"])
+```
+
+*    While this is running, plotting program is executed simultaneously resulting in lively changing graph.
+
 ## Results from predictions
-Based on weighted mean absolute error(WMAE), points scored in Kaggle is 11126.41686. Please feel free to download, fork, send pull requests and comment on this project.
+Screenshots of plots can be found [here]. 
