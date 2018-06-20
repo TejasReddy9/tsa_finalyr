@@ -1,4 +1,4 @@
-# TSA
+# Twitter Sentiment Analysis
 
 ## Description
 
