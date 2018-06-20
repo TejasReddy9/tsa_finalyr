@@ -1,5 +1,5 @@
-title: Walmart Sales Forecasting
-description: This project is a submission to the open problem hosted by Walmart. Concepts of Gradient boosting regression in Machine Learning is used. Done under the guidance of Dr. Vivek Vijay, Asst. Prof., IIT Jodhpur
+title: Twitter Sentiment Analysis
+description: Live twitter streaming data is classified based on its sentiment towards a given topic. This presents the live graph simulation. Done under the guidance of Dr. Gaurav Harit, Asst. Prof., IIT Jodhpur
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-cayman
