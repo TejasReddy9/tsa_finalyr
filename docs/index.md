@@ -108,7 +108,7 @@ def sentiment(text):
 ```
 
 *   Note:
-> Code in github uses pickled data, so get your hands dirty and dig through how to use pickle. For reference, I'll add another file to the repo.
+> I've used pickled data as these models take a lot of time to run, so get your hands dirty and dig through how to use pickle. For reference, I'll add another file to the repo.
 > Cheers!
 
 ## Using this model for Twitter streaming data
