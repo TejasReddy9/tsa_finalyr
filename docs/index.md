@@ -22,12 +22,14 @@ For getting live data from twitter, go to the [twitter apps site](https://apps.t
 
 ## Module created for Sentiment Analysis
 *   First I've used movie-reviews dataset from nltk corpora is used for training our model. Later I found a better dataset, lets use some data from reddit comments(pretty big and famous). I've attached them in the repo.
+
 ```python
 short_pos = codecs.open("positive.txt","r",encoding="latin2").read()
 short_neg = codecs.open("negative.txt","r",encoding="latin2").read()
 ```
 
 *   Let's pile up all the data into a documents list. Additionally, we can filter these words which we wanted in dictionary w.r.t. their part of speech tag using nltk. For example, starts with 'J' only for adjectives. Documents is the list of tuples. One is the sentence, other is the sentiment.
+
 ```python
 documents = []
 all_words = []
@@ -36,16 +38,16 @@ for r in short_pos.split('\n'):
 	documents.append((r,"pos"))
 	words = word_tokenize(r)
 	pos = nltk.pos_tag(words)
-	for w in pos:
-            if w[1][0] in allowed_words_types:
-	        all_words.append(w[0].lower())
+    	for w in pos:
+		if w[1][0] in allowed_words_types:
+			all_words.append(w[0].lower())
 for r in short_neg.split('\n'):
 	documents.append((r,"neg"))
 	words = word_tokenize(r)
 	pos = nltk.pos_tag(words)
 	for w in pos:
-	    if w[1][0] in allowed_words_types:
-		all_words.append(w[0].lower())
+		if w[1][0] in allowed_words_types:
+			all_words.append(w[0].lower())
 ```
 
 *   Pickle everything meanwhile, it saves running time for the program as it had to load the whole data each time you run.
