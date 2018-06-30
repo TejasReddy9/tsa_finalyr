@@ -53,24 +53,27 @@ for r in short_neg.split('\n'):
 *   Pickle everything meanwhile, it saves running time for the program as it had to load the whole data each time you run.
 
 *   Then find frequency distribution of all_words(list of sentences). This gives us the idea of the most frequently occuring words. Let's take the top 5k or 7k data of them to make word features.
+
 ```python
 all_words = nltk.FreqDist(all_words) #frequencies
 word_features = list(all_words.keys())[:5000]
 ```
 
 *   For finding features, for sentence in documents, we replace it with a dictionary of features of the sentence. Hence we get featureset. For each word in word features, if the word exists in the tokenized words, then features of it is set True. For each sentence, word features list is labelled. Shuffle them.
+
 ```python
 def find_features(document):
 	words = word_tokenize(document)
 	features = {}
 	for w in word_features:
-	    features[w] = bool(w in words)
-	return features
+		features[w] = bool(w in words)
+		return features
 featuresets = [(find_features(rev), category) for (rev, category) in documents]
 random.shuffle(featuresets)
 ```
 
 *   Train various models. Change the training data and testing data quantity if you want to.
+
 ```python
 training_set = featuresets[:10000]
 testing_set = featuresets[10000:]
@@ -85,24 +88,26 @@ print("Accuracy:", nltk.classify.accuracy(classifier, testing_set))
 ```
 
 *   Let's create our own classifier based on all these classifiers, by preferring that model which gets most number of votes.
+
 ```python
 class VoteClassifier(ClassifierI):
 	def __init__(self, *classifiers):
-	    self._classifiers = classifiers
+		self._classifiers = classifiers
 	def classify(self, features):
-	    votes = [c.classify(features) for c in self._classifiers]
-	    return mode(votes)
+		votes = [c.classify(features) for c in self._classifiers]
+		return mode(votes)
 	def confidence(self, features):
-	    votes = [c.classify(features) for c in self._classifiers]
-	    choice_votes = votes.count(mode(votes))
-	    conf = choice_votes / len(votes)
-	    return conf 
+		votes = [c.classify(features) for c in self._classifiers]
+		choice_votes = votes.count(mode(votes))
+		conf = choice_votes / len(votes)
+		return conf 
 voted_classifier = VoteClassifier(classifier, MNB_classifier, BernoulliNB_classifier, LogisticRegression_classifier, 
 				SGDClassifier_classifier, LinearSVC_classifier, NuSVC_classifier)
 print("voted_classifier accuracy:", nltk.classify.accuracy(voted_classifier, testing_set))
 ```
 
 *   A function for determining expected sentiment.
+
 ```python
 def sentiment(text):
 	featset = find_features(text)
@@ -117,24 +122,25 @@ def sentiment(text):
 *   Consumer key, consumer secret key, auth key, and auth secret key are hashed in the code. I don't wanna publicize mine. Go ahead and follow the instructions in the twitter apps page.
 
 *   We use exception handling for checking whether the tweet has recieved without any interruption. It calls the module for finding the sentiment attached and also with what confidence it is saying. Let's only consider if the confidence crosses high seventies. 
+
 ```python
 class listener(StreamListener):
 	def on_data(self, data):
-	    try:
-		all_data = json.loads(data)
-		tweet = all_data["text"]
-		sentiment_value, confidence = s.sentiment(tweet)
-		print(tweet, sentiment_value, confidence)
-		if(confidence*100 >= 80):
-		    output = open("twitter-out.txt","a")
-		    output.write(sentiment_value)
-		    output.write('\n')
-		    output.close()
-		return(True)
-	    except Exception as e:
-		return(True)
+		try:
+			all_data = json.loads(data)
+			tweet = all_data["text"]
+			sentiment_value, confidence = s.sentiment(tweet)
+			print(tweet, sentiment_value, confidence)
+			if(confidence*100 >= 80):
+				output = open("twitter-out.txt","a")
+				output.write(sentiment_value)
+				output.write('\n')
+				output.close()
+			return(True)
+		except Exception as e:
+			return(True)
 	def on_error(self, status):
-	    print(status)
+		print(status)
 auth = OAuthHandler(ckey, csecret)
 auth.set_access_token(atoken, asecret)
 twitterStream = Stream(auth, listener())
@@ -144,4 +150,4 @@ twitterStream.filter(track=["happy"])
 *    While this is running, plotting program is executed simultaneously resulting in lively changing graph.
 
 ## Results from predictions
-Screenshots of plots can be found [here]. 
+Screenshots of plots can be found ![here](). 
